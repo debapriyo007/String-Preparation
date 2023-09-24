@@ -28,14 +28,16 @@ class GFG {
 
 class Solution{
     public String removeConsecutiveCharacter(String S){
-        StringBuilder sb=new StringBuilder();
-        for(int i=0;i<S.length()-1;i++){
-            if(S.charAt(i)!=S.charAt(i+1)){
+        
+        //Create a StringBuilder..
+        StringBuilder sb = new StringBuilder();
+        sb.append(S.charAt(0));
+        
+        for(int i = 1 ;i<S.length();i++){
+            if(S.charAt(i)!= S.charAt(i-1)){
                 sb.append(S.charAt(i));
             }
         }
-        sb.append(S.charAt(S.length()-1));
-        
         return sb.toString();
     }
 }
