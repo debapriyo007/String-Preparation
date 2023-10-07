@@ -2,28 +2,34 @@ class Solution {
     public int beautySum(String s) {
         int ans = 0;
         for(int i = 0 ;i<s.length();i++){
-            int freq[] = new int[26];
-            for(int j = i ;j<s.length();j++){
-                freq[s.charAt(j) - 'a']++;
-                int beauty = calbeauty(freq);
+            int frq[] = new int [26];
+            for(int j = i;j<s.length();j++){
+                frq[s.charAt(j) - 'a']++;
+                int min = getMin(frq);
+                int max = getMax(frq);
+                int beauty = max - min;
                 ans+=beauty;
+                
             }
         }return ans;
     }
-    public int calbeauty(int[] freq){
-
-        int min = Integer.MAX_VALUE; int max = Integer.MIN_VALUE ;
-
-        for(int i = 0 ; i < freq.length ; i++){
-            
-            if(freq[i] != 0){//this is very very very important
-                min = Math.min(freq[i],min);
+    
+    public static int getMin(int frq[]){
+        int min = Integer.MAX_VALUE;
+        for(int i = 0;i<26;i++){
+            if(frq[i]!=0){
+                min = Math.min(min,frq[i]);
             }
-            max = Math.max(freq[i],max);
         }
-        return max-min ;
+        return min;
     }
-
-     
-
+    public static int getMax(int frq[]){
+        int max = Integer.MIN_VALUE;
+        for(int i = 0;i<26;i++){
+            if(frq[i]!=0){
+                max = Math.max(max,frq[i]);
+            }
+        }
+        return max;
+    }
 }
